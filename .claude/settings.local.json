@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd /d/prog/heat_map && git add -A && git diff --cached --quiet || (git commit -m \"$(git diff --cached --stat | tail -1 | sed 's/^/auto: /')\" && git push origin master)"
+            "command": "cd /d/prog/heat_map && git add -A && git diff --cached --quiet || (MSG=$(git diff --cached --name-status | awk 'BEGIN{a=\"\";m=\"\";d=\"\"} $1==\"A\"{a=a\" \"$2} $1==\"M\"{m=m\" \"$2} $1==\"D\"{d=d\" \"$2} END{if(a!=\"\")print \"add:\"a; if(m!=\"\")print \"update:\"m; if(d!=\"\")print \"remove:\"d}' | paste -sd \"; \") && git commit -m \"$MSG\" && git push origin master)"
           }
         ]
       }
