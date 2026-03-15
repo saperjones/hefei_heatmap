@@ -1,24 +1,46 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pip install:*)",
-      "Bash(cd:*)",
-      "Bash(gh auth:*)",
-      "Bash(git:*)",
-      "Bash(head:*)",
-      "Bash(python:*)"
-    ]
-  },
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cd /d/prog/heat_map && git add -A && git diff --cached --quiet || (MSG=$(git diff --cached --name-status | awk 'BEGIN{a=\"\";m=\"\";d=\"\"} $1==\"A\"{a=a\" \"$2} $1==\"M\"{m=m\" \"$2} $1==\"D\"{d=d\" \"$2} END{if(a!=\"\")print \"add:\"a; if(m!=\"\")print \"update:\"m; if(d!=\"\")print \"remove:\"d}' | paste -sd \"; \") && git commit -m \"$MSG\" && git push origin master)"
-          }
-        ]
-      }
+      "Bash(rm *)",
+      "Bash(rm -rf *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git reset *)",
+      "Bash(git log *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pip *)",
+      "Bash(pip3 *)",
+      "Bash(npm *)",
+      "Bash(node *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(mkdir *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Read(*)",
+      "Write(*)"
+    ],
+    "deny": [
+      "Bash(ssh * rm *)",
+      "Bash(ssh * sudo rm *)",
+      "Bash(ssh * del *)",
+      "Bash(scp *)",
+      "Bash(sftp *)",
+      "Bash(rsync --delete *)",
+      "Bash(rsync -a --delete *)",
+      "Bash(curl * -X DELETE *)",
+      "Bash(curl *--request DELETE*)",
+      "Bash(wget *)",
+      "Bash(docker rm *)",
+      "Bash(kubectl delete *)"
     ]
   }
 }
