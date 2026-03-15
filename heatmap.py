@@ -6,7 +6,7 @@ import os
 
 # ================= 配置区 =================
 DATA_PATH = 'hefei_mock_trajectory.csv'  # 模拟数据将被保存到这个文件
-OUTPUT_FILE = 'Hefei_Trajectory_Heatmap.html'
+OUTPUT_FILE = 'output/Hefei_Trajectory_Heatmap.html'
 CENTER_LAT, CENTER_LON = 31.8206, 117.2272 # 合肥市中心坐标 (WGS84)
 
 # ================= 0. 模拟数据生成器 =================
@@ -93,6 +93,7 @@ def generate_heatmap(data_points):
         max_zoom=16
     ).add_to(m)
     
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     m.save(OUTPUT_FILE)
     print(f"热力图渲染完成！请用浏览器打开当前目录下的 '{OUTPUT_FILE}' 查看效果。")
 
