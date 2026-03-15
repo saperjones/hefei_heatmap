@@ -9,8 +9,8 @@ import numpy as np
 import glob
 import time
 
-TRAJ_DIR    = 'trajectories'
-OUTPUT_FILE = 'Hefei_200k_Heatmap.html'
+TRAJ_DIR    = 'data/trajectories'
+OUTPUT_FILE = 'output/Hefei_200k_Heatmap.html'
 CENTER_LAT, CENTER_LON = 31.8206, 117.2272
 
 # ── 1. Load and aggregate ─────────────────────────────────────────────────────
@@ -65,5 +65,7 @@ HeatMap(
     max_zoom=18,
 ).add_to(m)
 
+import os
+os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 m.save(OUTPUT_FILE)
 print(f"Saved → {OUTPUT_FILE}  ({time.time()-t0:.1f}s total)")

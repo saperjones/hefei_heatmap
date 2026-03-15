@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 # ================= 配置区 =================
-DATA_PATH = 'hefei_mock_trajectory.csv'  # 模拟数据将被保存到这个文件
+DATA_PATH = 'data/hefei_mock_trajectory.csv'
 OUTPUT_FILE = 'output/Hefei_Trajectory_Heatmap.html'
 CENTER_LAT, CENTER_LON = 31.8206, 117.2272 # 合肥市中心坐标 (WGS84)
 
@@ -38,6 +38,7 @@ def generate_sample_data(file_path):
     
     # 随机打乱数据顺序，模拟真实的时间乱序流
     df = df.sample(frac=1).reset_index(drop=True)
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
     df.to_csv(file_path, index=False)
     print(f"模拟数据已成功生成并保存至: {file_path}，共 {len(df)} 个点位。")
 
