@@ -4,7 +4,21 @@
       "Bash(pip install:*)",
       "Bash(cd:*)",
       "Bash(gh auth:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(head:*)",
+      "Bash(python:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /d/prog/heat_map && git add -A && git diff --cached --quiet || (git commit -m 'auto: save changes' && git push origin master)"
+          }
+        ]
+      }
     ]
   }
 }
